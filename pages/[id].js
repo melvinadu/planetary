@@ -26,7 +26,7 @@ function Planet({ metadata, opensea }) {
     <p>Not for sale</p>
   )
 
-  // TODO
+  // TODO replaced static metadata on line 10 with dynamic link below
   let openSeaLink = `https://testnets.opensea.io/assets/${contractAddress}/${id}`
 
   return (
