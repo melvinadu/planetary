@@ -1,0 +1,76 @@
+vin@vins-air planetary % truffle migrate --network rinkeby
+
+Compiling your contracts...
+===========================
+> Compiling ./contracts/Planetary.sol
+> Artifacts written to /Users/vin/Programming/planetary/build/contracts
+> Compiled successfully using:
+   - solc: 0.8.8+commit.dddeac2f.Emscripten.clang
+
+
+Starting migrations...
+======================
+> Network name:    'rinkeby'
+> Network id:      4
+> Block gas limit: 30000000 (0x1c9c380)
+
+
+1_initial_migration.js
+======================
+
+   Deploying 'Migrations'
+   ----------------------
+   > transaction hash:    0x2ebc4c0b5c09f6c11cf790c27cb09159b052dcf194c68386346d4f404aaabc16
+   > Blocks: 1            Seconds: 8
+   > contract address:    0x003d5307fe5408E5260C03ECADA92653dc30f0e0
+   > block number:        10492933
+   > block timestamp:     1649788229
+   > account:             0x1314f994b2506E91609ca4EEa2a77364Dfd8fdFB
+   > balance:             0.099374614996497844
+   > gas used:            250154 (0x3d12a)
+   > gas price:           2.500000014 gwei
+   > value sent:          0 ETH
+   > total cost:          0.000625385003502156 ETH
+
+   Pausing for 2 confirmations...
+
+   -------------------------------
+   > confirmation number: 1 (block: 10492934)
+   > confirmation number: 2 (block: 10492935)
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:     0.000625385003502156 ETH
+
+
+2_setup_planetary.js
+====================
+
+   Deploying 'Planetary'
+   ---------------------
+   > transaction hash:    0x24d9f09f143c59ecaa7db66186aa66231360e396533211a76b1a81160d1a8455
+   > Blocks: 0            Seconds: 12
+   > contract address:    0xBb4EFB34a6888fB62c099D2E3ABEDD44ABBB873E
+   > block number:        10492937
+   > block timestamp:     1649788289
+   > account:             0x1314f994b2506E91609ca4EEa2a77364Dfd8fdFB
+   > balance:             0.09244346996045589
+   > gas used:            2726545 (0x299a91)
+   > gas price:           2.500000013 gwei
+   > value sent:          0 ETH
+   > total cost:          0.006816362535445085 ETH
+
+   Pausing for 2 confirmations...
+
+   -------------------------------
+   > confirmation number: 1 (block: 10492938)
+   > confirmation number: 2 (block: 10492939)
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:     0.006816362535445085 ETH
+
+Summary
+=======
+> Total deployments:   2
+> Final cost:          0.007441747538947241 ETH
