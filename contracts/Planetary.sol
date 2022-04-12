@@ -11,7 +11,16 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
 contract Planetary is ERC721, ERC721URIStorage {
-    constructor() ERC721("Planetary", "PLNT") {}
+  //using the following doc in order to mint tokens - https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#ERC721
+    constructor() ERC721("Planetary", "PLNT") {
+      //underscore indicates a private method so method cannot be viewed publically
+      _safeMint(msg.sender, 1);
+      _safeMint(msg.sender, 2);
+      _safeMint(msg.sender, 3);
+      _safeMint(msg.sender, 4);
+      _safeMint(msg.sender, 5);
+
+    }
 
     function _baseURI() internal pure override returns (string memory) {
         return "https://ipfs.io/ipfs/";
