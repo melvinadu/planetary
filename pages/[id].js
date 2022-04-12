@@ -11,7 +11,7 @@ import EthName from '../components/EthName'
 
 //the metadata is currently being pulled into the page as an input into the Planet function
 //we will now pull the metadata into the page before it loads within the getStaticPaths function below
-function Planet({ metadata }) {
+function Planet({ metadata, opensea }) {
   const router = useRouter()
   let { id } = router.query
   id = parseInt(id)
@@ -72,9 +72,18 @@ export async function getStaticProps({ params }) {
   let metadataResponse = await fetch(token)
   let metadata = await metadataResponse.json()
 
+  //TO DO: use OpenSea API to create sync and keep web app information regarding product up to date
+  //doc reference: https://docs.opensea.io/reference/retrieving-a-single-asset
+  //we are adding "rinkeby-" to URL due to test network config
+  let openseaResponse = await fetch(`https://rinkeby-api.opensea.io/api/v1/asset/${contractAddress}/${params.id}`)
+  let opensea = await openseaResponse.json()
+
+  console.log(opensea);
+
   return {
     props: {
-      metadata: metadata
+      metadata: metadata,
+      opensea: opensea
     }
   }
 }
