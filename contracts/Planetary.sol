@@ -13,13 +13,21 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 contract Planetary is ERC721, ERC721URIStorage {
   //using the following doc in order to mint tokens - https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#ERC721
     constructor() ERC721("Planetary", "PLNT") {
-      //underscore indicates a private method so method cannot be viewed publically
-      _safeMint(msg.sender, 1);
-      _safeMint(msg.sender, 2);
-      _safeMint(msg.sender, 3);
-      _safeMint(msg.sender, 4);
-      _safeMint(msg.sender, 5);
+      // https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#ERC721-_safeMint-address-uint256-
+      // underscore indicates a private method so method cannot be viewed publically
+      _createPlanet(msg.sender, 1, "planet url");
+      _createPlanet(msg.sender, 2, "planet url");
+      _createPlanet(msg.sender, 3, "planet url");
+      _createPlanet(msg.sender, 4, "planet url");
+      _createPlanet(msg.sender, 5, "planet url");
 
+    }
+
+    //refactor and use custom function to create planet tokens
+    //again, underscore indicates a private method so method cannot be viewed publically
+    function _createPlanet (address to, uint id, string memory url) private returns (bool) {
+      _safeMint(to, id);
+      return true;
     }
 
     function _baseURI() internal pure override returns (string memory) {
