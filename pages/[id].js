@@ -27,7 +27,7 @@ function Planet({ metadata }) {
   )
 
   // TODO
-  let openSeaLink = "#"
+  let openSeaLink = `https://testnets.opensea.io/assets/${contractAddress}/${id}`
 
   return (
     <>
@@ -71,7 +71,7 @@ export async function getStaticProps({ params }) {
 
   let metadataResponse = await fetch(token)
   let metadata = await metadataResponse.json()
-  
+
   return {
     props: {
       metadata: metadata
