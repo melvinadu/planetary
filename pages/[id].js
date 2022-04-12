@@ -7,8 +7,10 @@ import Navigation from '../components/Navigation'
 import Universe from '../components/Universe'
 import EthName from '../components/EthName'
 
-import metadata from '../planetary-data/metadata-1.json'
+//import metadata from '../planetary-data/metadata-1.json'
 
+//the metadata is currently being pulled into the page as an input into the Planet function
+//we will now pull the metadata into the page before it loads within the getStaticPaths function below
 function Planet({ metadata }) {
   const router = useRouter()
   let { id } = router.query
@@ -62,8 +64,14 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
 
+  //TO DO: pull in correct metadata per page within the web app
   // params.id is available
+  //tokenURI can be referenced here: https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#ERC721URIStorage-_setTokenURI-uint256-string-
+  let token = await contract.methods.tokenURI(params.id).call()
 
+  let metadataResponse = await fetch(token)
+  let metadata = await metadataResponse.json()
+  
   return {
     props: {
       metadata: metadata
