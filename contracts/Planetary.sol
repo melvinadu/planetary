@@ -12,40 +12,44 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
 contract Planetary is ERC721, ERC721URIStorage {
   //using the following doc in order to mint tokens - https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#ERC721
-    constructor() ERC721("Planetary", "PLNT") {
-      // https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#ERC721-_safeMint-address-uint256-
-      // underscore indicates a private method so method cannot be viewed publically
-      _createPlanet(msg.sender, 1, "planet url");
-      _createPlanet(msg.sender, 2, "planet url");
-      _createPlanet(msg.sender, 3, "planet url");
-      _createPlanet(msg.sender, 4, "planet url");
-      _createPlanet(msg.sender, 5, "planet url");
+  constructor() ERC721("Planetary", "PLNT") {
+    // underscore indicates a private method so method cannot be viewed publically
+    _createPlanet(msg.sender, 1, "QmcGByRh3dYoZA8av3CmErhmeEFiERzGYzfQ7iBqU1hb5G");
+    _createPlanet(msg.sender, 2, "QmbxbvrQCV8cmX8wuQc8UrNUxTpiFzeopezdMEG5ymdvzM");
+    _createPlanet(msg.sender, 3, "QmRVoeVyy7qdxxvrgJXeC4omJBwF49hNEhQmda4bEzL87Q");
+    _createPlanet(msg.sender, 4, "QmcaB78qNBwu8BjLJ8css95j1r3GQvfGmV5dh4n3kBstVz");
+    _createPlanet(msg.sender, 5, "QmP7HXPekgWTAa3vss8NPGuqimC8oooh6rfHBxRydLuH6Z");
+  }
 
-    }
-
-    //refactor and use custom function to create planet tokens
+  //refactor and use custom function to create planet tokens
+  function _createPlanet (address to, uint id, string memory url) private returns (bool) {
+    // https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#ERC721-_safeMint-address-uint256-
     //again, underscore indicates a private method so method cannot be viewed publically
-    function _createPlanet (address to, uint id, string memory url) private returns (bool) {
-      _safeMint(to, id);
-      return true;
-    }
+    _safeMint(to, id);
 
-    function _baseURI() internal pure override returns (string memory) {
-        return "https://ipfs.io/ipfs/";
-    }
+    //https://docs.openzeppelin.com/contracts/4.x/api/token/erc721#ERC721URIStorage-_setTokenURI-uint256-string-
+    //again, underscore indicates a private method so method cannot be viewed publically
+    _setTokenURI(id, url);
 
-    // The following functions are overrides required by Solidity.
+    return true;
+  }
 
-    function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {
-        super._burn(tokenId);
-    }
+  function _baseURI() internal pure override returns (string memory) {
+      return "https://ipfs.io/ipfs/";
+  }
 
-    function tokenURI(uint256 tokenId)
-        public
-        view
-        override(ERC721, ERC721URIStorage)
-        returns (string memory)
-    {
-        return super.tokenURI(tokenId);
-    }
+  // The following functions are overrides required by Solidity.
+
+  function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {
+      super._burn(tokenId);
+  }
+
+  function tokenURI(uint256 tokenId)
+      public
+      view
+      override(ERC721, ERC721URIStorage)
+      returns (string memory)
+  {
+      return super.tokenURI(tokenId);
+  }
 }
