@@ -21,10 +21,21 @@ function Planet({ metadata, opensea }) {
     document.documentElement.style.setProperty("--secondary-color", metadata.properties.secondaryColor)
   }
 
-  // TODO
+  // TO DO: render on web app whether item is for sale or not
   let forSaleNotice = (
     <p>Not for sale</p>
   )
+
+    //TO DO: find key within opensea object that registers when item is live for sale on opensea are below may not work
+  if (opensea.orders) {
+
+    const price = web3.utils.fromWei(opensea.orders[0].base_price, "ether")
+    const makerAddress = opensea.orders[0].maker.address
+
+    forSaleNotice = (
+      <p>Currently for sale on OpenSea for {price} ETH by <EthName address={makerAddress}/> </p>
+    )
+  }
 
   // TODO replaced static metadata on line 10 with dynamic link below
   let openSeaLink = `https://testnets.opensea.io/assets/${contractAddress}/${id}`
